@@ -1,10 +1,14 @@
 var assert = require('assert');
 var request = require('request');
-
+var TbsServer = require('../main');
 describe('Static server', function() {
   var server;
   before(function (done) {
-    server = require('../src');
+    server = new TbsServer({
+      port: 9000,
+      mainStaticDir: 'test/app_fixture/main',
+      bowerStaticDir: 'test/app_fixture/bower'}
+    );
     server.start(done);
   });
 
