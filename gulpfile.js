@@ -14,7 +14,7 @@ gulp.task('jshint-test', function () {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('jshint', ['jshint-src', 'jshint-test']);
+gulp.task('jshint', ['jshint-main', 'jshint-test']);
 
 
 gulp.task('mocha', function () {
