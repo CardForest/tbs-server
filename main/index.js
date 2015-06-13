@@ -1,7 +1,11 @@
 var express = require('express');
 var http = require('http');
 var morgan = require('morgan');
-var UserManager = require('./components/userManager');
+var WS = require('sane-web-socket/server');
+
+var UserManager = require('./userManager');
+
+
 
 function TbsServer(opt) {
   this.port = opt.port;
@@ -49,14 +53,29 @@ function TbsServer(opt) {
   this.server.on('close', function() {
     opt.log.info('server is closed');
   });
+
+  this.ws = new WS(userManager);
+  // TODO something like this with userManager:
+  //  opt.ws.on('authenticate', function (connection, msg) {
+  //    var decoded = this.userJwt.decode(msg.token, msg.impersonationUserId ?
+  //    {
+  //      _id: msg.impersonationUserId,
+  //      role: msg.impersonationUserRole
+  //    } :
+  //      undefined);
+  //    connection.userId = decoded._id;
+  //    connection.userRole = decoded.role;
+  //
+  //    return 'OK';
+  //  });
 }
 
 TbsServer.prototype.start = function(cb) {
-  this.server.listen(this.port, cb);
+  return this.ws.start(this.server, this.port).asCallback(cb);
 };
 
 TbsServer.prototype.stop = function(cb) {
-  this.server.close(cb);
+  return this.ws.stop().asCallback(cb);
 };
 
 module.exports = TbsServer;

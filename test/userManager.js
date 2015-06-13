@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 
 var assert = require('assert');
 var request = require('request');
-var UserManager = require('../main/components/userManager/');
-var UserJwt = require('../main/components/userManager/userJwt');
-var User = require('../main/components/userManager/model');
+var UserManager = require('../main/userManager/');
+var UserJwt = require('../main/userManager/userJwt');
+var User = require('../main/userManager/model');
 
 describe('user manager', function () {
   var userJwtSecretKey, userJwtSecretKey2;

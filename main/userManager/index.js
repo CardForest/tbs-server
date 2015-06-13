@@ -70,7 +70,6 @@ function UserManager(opt) {
   router.get('/', this.express.ensureAdmin, expressRoutes.getUsers);
 
   //this.router.post('/auth/google', UserManager.prototype.routes.authenticateWithGoogle.bind(this));
-
 }
 
 //
