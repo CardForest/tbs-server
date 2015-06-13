@@ -1,4 +1,4 @@
-module.exports = function(app, opt) {
+module.exports = function(app) {
   // change some headers for minimal security
   app.disable('x-powered-by'); // avoid telling potential hackers what system is used
   app.use(function (req, res, next) { // prevent this server pages from being displayed in an iframe

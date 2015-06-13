@@ -7,7 +7,7 @@ function TbsServer(opt) {
 
   var app = express();
 
-  require('./middleware/security')(app, opt);
+  require('./middleware/security')(app);
 
   // TODO http logging should route to winston on production
   app.use(morgan('combined', {
@@ -24,6 +24,7 @@ function TbsServer(opt) {
   app.use(require('body-parser').json());
 
   // TODO most of the logic should go here
+  //require('./components/user-management')(app, opt);
 
   // TODO set { maxAge: '7d' } cache in production
   app.use(express.static(opt.mainStaticDir));
