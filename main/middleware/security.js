@@ -5,19 +5,17 @@ module.exports = function(app, opt) {
     res.setHeader('X-Frame-Options', 'SAMEORIGIN');
     next();
   });
-  app.set('trust proxy', 1); // NOTE only if we're behind a reverse proxy (as in heroku);
+  app.set('trust proxy', 'loopback'); // NOTE only if we're behind a reverse proxy (as in heroku);
 
   // TODO CSRF for Angular-JS (and others... but we only care about angular)
 
-  // Force HTTPS on Heroku
-  if (opt.preferHttps) {
-    app.use(function(req, res, next) {
-      var protocol = req.get('x-forwarded-proto');
-      if (protocol === 'https') {
-        next();
-      } else {
-        res.redirect('https://' + req.hostname + req.url);
-      }
-    });
-  }
+  // Force HTTPS when behind reverse proxy
+  app.use(function(req, res, next) {
+    var protocol = req.get('x-forwarded-proto');
+    if (protocol == null || protocol === 'https') {
+      next();
+    } else {
+      res.redirect('https://' + req.hostname + req.url);
+    }
+  });
 };
