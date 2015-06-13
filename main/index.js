@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var morgan = require('morgan');
+var UserManager = require('./components/userManager');
 
 function TbsServer(opt) {
   this.port = opt.port;
@@ -24,7 +25,10 @@ function TbsServer(opt) {
   app.use(require('body-parser').json());
 
   // TODO most of the logic should go here
-  //require('./components/user-management')(app, opt);
+  var userManager = new UserManager({
+    userJwtSecretKey: opt.userJwtSecretKey
+  });
+  app.use('/users', userManager.express.router);
 
   // TODO set { maxAge: '7d' } cache in production
   app.use(express.static(opt.mainStaticDir));

@@ -6,5 +6,6 @@ module.exports = {
   bowerStaticDir: process.env.BOWER_STATIC_DIR || 'test/app_fixture/bower',
   port: process.env.PORT || 9000,
   log: winston,
-  httpLogStream: winstonStream(winston, "verbose")
+  httpLogStream: winstonStream(winston, "verbose"),
+  userJwtSecretKey: process.env.USER_JWT_SECRET_KEY || 'Z0d+vAYr1CXV6n2ICyg/djic'
 };
