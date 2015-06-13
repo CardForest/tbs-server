@@ -4,11 +4,7 @@ var TbsServer = require('../main');
 describe('Static server', function() {
   var server;
   before(function (done) {
-    server = new TbsServer({
-      port: 9000,
-      mainStaticDir: 'test/app_fixture/main',
-      bowerStaticDir: 'test/app_fixture/bower'}
-    );
+    server = new TbsServer(require('../config'));
     server.start(done);
   });
 

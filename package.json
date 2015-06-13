@@ -16,6 +16,9 @@
     "request": "^2.57.0"
   },
   "dependencies": {
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "morgan": "^1.5.3",
+    "winston": "^1.0.0",
+    "winston-stream": "0.0.0"
   }
 }
