@@ -16,6 +16,13 @@ function TbsServer(opt) {
 
   require('./middleware/robots')(app, opt);
 
+  //TODO app.use(require('serve-favicon')(config.get('paths.favicon')));
+
+  // TODO (maybe) something like http-static-gzip-regexp and grunt-contrib-compress
+  app.use(require('compression')());
+
+  app.use(require('body-parser').json());
+
   // TODO most of the logic should go here
 
   // TODO set { maxAge: '7d' } cache in production

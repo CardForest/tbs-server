@@ -13,8 +13,8 @@
 
 #### logging
 
-- [x] setup default winston log
-- [x] setup morgan to relay to winston info stream
+- [x] setup default [winston](https://github.com/winstonjs/winston) log
+- [x] setup [morgan](https://github.com/expressjs/morgan) to relay to winston info stream
 
 #### robots
 
@@ -25,6 +25,11 @@
 
 - [x] forward not found error the error handler
 - [x] use devlopment [error handler](https://github.com/expressjs/errorhandler)
+
+#### misc
+
+- [x] [compression](https://github.com/expressjs/compression)
+- [x] [json body parser](https://github.com/expressjs/body-parser#bodyparserjsonoptions)
 
 ## License
 
