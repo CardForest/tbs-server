@@ -5,7 +5,11 @@ var WS = require('sane-web-socket/server');
 
 var UserManager = require('./userManager');
 
-
+var config = require('config');
+console.log(config.get('test'));
+console.log(config.util.getEnv('NODE_ENV'));
+console.log(config.get('env'));
+//console.log(config.get('port'));
 
 function TbsServer(opt) {
   this.port = opt.port;
@@ -54,7 +58,8 @@ function TbsServer(opt) {
     opt.log.info('server is closed');
   });
 
-  this.ws = new WS(userManager);
+  this.ws = null;
+  //this.ws = new WS(userManager);
   // TODO something like this with userManager:
   //  opt.ws.on('authenticate', function (connection, msg) {
   //    var decoded = this.userJwt.decode(msg.token, msg.impersonationUserId ?

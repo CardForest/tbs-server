@@ -16,10 +16,15 @@ gulp.task('jshint-test', function () {
 
 gulp.task('jshint', ['jshint-main', 'jshint-test']);
 
-
 gulp.task('mocha', function () {
   return gulp.src('test/**/*.js', {read: false})
     .pipe(mocha({reporter: 'spec'}));
+});
+
+// creates jwt secret
+gulp.task('jwt', function () {
+
+  console.log('\nJWT secret:\n\n' + require('./util').createJwtSecret() + '\n');
 });
 
 gulp.task('default', ['jshint', 'mocha']);
